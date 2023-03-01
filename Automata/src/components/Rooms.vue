@@ -109,6 +109,7 @@ const actualRoom = ref('')
 const modalSensorOn = ref(false)
 const modalOn = ref(false)
 
+//Obtengo las Salas de firebase
 const dameRooms = () => {
   onDameRooms('Salas', (docs) => {
     rooms.value = []
@@ -117,7 +118,7 @@ const dameRooms = () => {
     })
   })
 }
-
+//Obtengo los dispositivos
 const dameDevices = () => {
   onDameDevices('Dispositivos', (docs) => {
     device.value = []
@@ -127,6 +128,7 @@ const dameDevices = () => {
   })
 }
 
+//añado una nueva sala a firebase
 const anadeRoom = () => {
   if (roomName.value != '') {
     addRoom('Salas', { Sala: roomName.value })
@@ -136,6 +138,7 @@ const anadeRoom = () => {
     alert('El nombre de la sala no puede estar vacío')
   }
 }
+//Elimino sala y si tiene dispositivos dentro también los elimina
 const deleteRoom = (room) => {
   device.value.map((el) => {
     if (room.Sala == el.room) {
@@ -145,6 +148,7 @@ const deleteRoom = (room) => {
   deleteDevice('Salas', room.id)
 }
 
+//Agrego nuevo dispositivo, dependiento el tipo
 const anadeDevice = () => {
   if (name.value == '') {
     alert('El nombre no puede estar vacío')
